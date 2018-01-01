@@ -34,9 +34,8 @@ public class ShowThermostat extends HttpServlet {
 	public static int modeDay2=3;              // 24h second scheduling
 	public static int modeNotFreezing=4;       // keep out of freeze
 	public static byte modeForce=(byte) 0x80;       
-	public static byte modeSuspendu=(byte) 0x40;
-	public static String[] modeDescription={"off","week","day1","day2","not freezing"};
-//	public static String[] modeDescription={"hors service","hebdomadaire","jour ferié","jour congés","hors gel"};
+	public static byte modeSuspendu=(byte) 0x40;       
+	public static String[] modeDescription={"hors service","hebdomadaire","jour ferié","jour congés","hors gel"};
 	    /**
      * Default constructor. 
      */
@@ -63,11 +62,10 @@ public class ShowThermostat extends HttpServlet {
 		String setMode="";
 		String setHold="";
 		try {
-			stationId =   request.getParameter("stationId");
+			stationId =   request.getParameter("station");
 		      if (stationId == null){  // 
 		    	  stationId="1280";
 		      }
-			request.setAttribute("stationId",stationId);	
 		      meteoId =   request.getParameter("meteo");
 		      if (meteoId == null){  // 
 		    	  meteoId="5";
@@ -80,9 +78,9 @@ public class ShowThermostat extends HttpServlet {
 		    setHold =   request.getParameter("hold");
 		    setMode =   request.getParameter("mode");
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
-			String connectionUrl = GetSqlConnection.GetDomotiqueDB();
-			String connectionUser = GetSqlConnection.GetUser();
-			String connectionPassword = GetSqlConnection.GetPass();
+			String connectionUrl = "jdbc:mysql://jserver:3306/domotiquedata";
+			String connectionUser = "jean";
+			String connectionPassword = "manu7890";
 			conn = DriverManager.getConnection(connectionUrl, connectionUser, connectionPassword);
 			trace="conn";
 			stmt = conn.createStatement();
@@ -204,15 +202,9 @@ public class ShowThermostat extends HttpServlet {
 				request.setAttribute("waterIn", rs.getInt("mesrument_value")); 
 				trace="query waterIn";
 			}
-			rs.close();	
-			rs = stmt.executeQuery("SELECT * FROM value_mesurment  where mesurment_st_id = "+water+" and mesurment_ind_id = "+waterOutIndId+" order by mesurment_time DESC limit 1");
-			while (rs.next()) {
-				request.setAttribute("waterOut", rs.getInt("mesrument_value")); 
-				trace="query waterOut";
-			}
 			rs.close();			
 			conn.close();
-			connectionUrl = GetSqlConnection.GetMeteoDB();
+			connectionUrl = "jdbc:mysql://jserver:3306/meteo";
 			conn = DriverManager.getConnection(connectionUrl, connectionUser, connectionPassword);
 			stmt = conn.createStatement();
 			trace="cnx meteo:";
@@ -269,7 +261,7 @@ public class ShowThermostat extends HttpServlet {
 		String status=" ";
 		String setTemperature="";
 		try {
-			stationId =   request.getParameter("stationId");
+			stationId =   request.getParameter("station");
 		      if (stationId == null){  // 
 		    	  stationId="1280";
 		      }
@@ -283,9 +275,9 @@ public class ShowThermostat extends HttpServlet {
 			 setTemperature =   request.getParameter("temperature");
 		      }
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
-			String connectionUrl = GetSqlConnection.GetDomotiqueDB();
-			String connectionUser = GetSqlConnection.GetUser();
-			String connectionPassword = GetSqlConnection.GetPass();
+			String connectionUrl = "jdbc:mysql://jserver:3306/domotiquedata";
+			String connectionUser = "jean";
+			String connectionPassword = "manu7890";
 			conn = DriverManager.getConnection(connectionUrl, connectionUser, connectionPassword);
 			trace="conn";
 
@@ -316,10 +308,10 @@ public class ShowThermostat extends HttpServlet {
 			while (rs.next()) {
 				if(rs.getBoolean("ind_value"))
 				{
-					request.setAttribute("relay","yes");
+					request.setAttribute("relay","oui");
 				}
 				else{
-					request.setAttribute("relay","no");				
+					request.setAttribute("relay","non");				
 				}
 				trace="query relay";
 				} 
@@ -369,14 +361,11 @@ public class ShowThermostat extends HttpServlet {
 				request.setAttribute("waterIn", rs.getInt("mesrument_value")); 
 				trace="query waterIn";
 			}
-			rs.close();
-			rs = stmt.executeQuery("SELECT * FROM value_mesurment  where mesurment_st_id = "+water+" and mesurment_ind_id = "+waterOutIndId+" order by mesurment_time DESC limit 1");
-			while (rs.next()) {
-				request.setAttribute("waterOut", rs.getInt("mesrument_value")); 
-				trace="query waterOut";
-			}
+			rs.close();			
 			conn.close();
-			connectionUrl = GetSqlConnection.GetMeteoDB();
+			connectionUrl = "jdbc:mysql://jserver:3306/meteo";
+	//		String connectionUser = "jean";
+	//		String connectionPassword = "manu7890";
 			conn = DriverManager.getConnection(connectionUrl, connectionUser, connectionPassword);
 			stmt = conn.createStatement();
 			trace="cnx meteo:";

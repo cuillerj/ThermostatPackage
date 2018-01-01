@@ -22,9 +22,9 @@ public class SendFrame  {
 				ResultSet rs1 = null;
 				ResultSet rs2 = null;
 				Class.forName("com.mysql.jdbc.Driver").newInstance();
-				String connectionUrl = "jdbc:mysql://jserver:3306/domotiquedata";
-				String connectionUser = "jean";
-				String connectionPassword = "manu7890";
+				String connectionUrl = GetSqlConnection.GetDomotiqueDB();
+				String connectionUser = GetSqlConnection.GetUser();
+				String connectionPassword = GetSqlConnection.GetPass();
 				conn = DriverManager.getConnection(connectionUrl, connectionUser, connectionPassword);
 				stmt = conn.createStatement();
 				rs1 = stmt.executeQuery("SELECT * FROM stations where st_id = "+stationId+" limit 1");

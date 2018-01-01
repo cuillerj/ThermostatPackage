@@ -3,6 +3,7 @@
 	<name>ThermostatPackage</name>
 	<comment></comment>
 	<projects>
+		<project>MysqlTools</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
