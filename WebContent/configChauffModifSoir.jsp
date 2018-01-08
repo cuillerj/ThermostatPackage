@@ -11,7 +11,7 @@
 <tr>
 <td>
 <h2 align="center">Chauffage:<%= request.getAttribute("Home-home")%>- - station:<%= request.getAttribute("stationId")%></h2>
-<h3 align="center"><a align="center" href="/domotique/consigneChauffModif?station=<%= request.getAttribute("stationId")%>"><%= request.getAttribute("jourEnClair")%></a></h3>
+<h3 align="center"><a align="center" href="consigneChauffModif?station=<%= request.getAttribute("stationId")%>"><%= request.getAttribute("jourEnClair")%></a></h3>
 	
 		<table align="center"  width=60% border="1">
 				<tr><th>Heure</th><th>Actuel</th><th>Modification</th><th>Heure</th><th>Actuel</th><th>Modification</th></tr>

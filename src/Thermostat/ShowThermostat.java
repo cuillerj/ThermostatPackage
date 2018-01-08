@@ -329,7 +329,7 @@ public class ShowThermostat extends HttpServlet {
 			while (rs.next()) {
 				if(rs.getBoolean("ind_value"))
 				{
-					status="temperature reduite";				
+					status="alarme On";				
 				}
 				trace="query securityOnIndId";
 				} 
