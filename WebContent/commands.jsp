@@ -20,7 +20,8 @@
 			<td align="center" BGCOLOR=#CEECF5>writeEeprom</td>
 			<td align="center" BGCOLOR=#CEECF5>Save current thermostat parameters in eeprom</td>
 			<td><form method="get" action="SendCommands">
-				<select name="parameter"  size="1">
+				<select name="parameter"  size="1" required>
+				    <option value="" selected></option>
 					<OPTION value="1">currentMode</OPTION>
 					<OPTION value="2">temperature</OPTION>
 					<OPTION value="4">schedule</OPTION>

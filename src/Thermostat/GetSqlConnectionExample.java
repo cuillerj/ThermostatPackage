@@ -1,6 +1,6 @@
 package Thermostat;
 
-public class GetSqlConnection {
+public class GetSqlConnectionExample {
 	public static final String connectionUser = "yourUser";
 	public static final String connectionPassword = "yourPassword";
 	public static final String domotiqueUrl = "jdbc:mysql://yourHost:3306/domotiquedata";

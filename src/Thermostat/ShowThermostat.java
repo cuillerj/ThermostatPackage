@@ -35,7 +35,7 @@ public class ShowThermostat extends HttpServlet {
 	public static int modeNotFreezing=4;       // keep out of freeze
 	public static byte modeForce=(byte) 0x80;       
 	public static byte modeSuspendu=(byte) 0x40;
-	public static String[] modeDescription={"off","week","day1","day2","not freezing"};
+	public static String[] modeDescription={"off","week","comfort+","outForTheDay","not freezing"};
 //	public static String[] modeDescription={"hors service","hebdomadaire","jour ferié","jour congés","hors gel"};
 	    /**
      * Default constructor. 
@@ -98,7 +98,7 @@ public class ShowThermostat extends HttpServlet {
 				trace="query currentTemp";
 				} 
 			rs.close();
-		    if (setTemperature != null){  // 
+		    if (setTemperature != null && setHold==null && setMode==null){  // 
 		    	try{
 		    		traceCmd="try1";
 			//		SendFrame send = new SendFrame();
@@ -107,7 +107,7 @@ public class ShowThermostat extends HttpServlet {
 		    	}
 		    	finally{}		    			
 		      }				
-		    if (setMode != null){  // 
+		    if (setMode != null && setTemperature == null && setHold==null){  // 
 		    	try{
 		    		traceCmd="try3";
 	//				SendFrame send = new SendFrame();
@@ -116,7 +116,7 @@ public class ShowThermostat extends HttpServlet {
 		    	}
 		    	finally{}
 		    }
-			    if (setHold != null){  // 
+			    if (setHold != null && setMode == null && setTemperature == null ){  // 
 			    	try{
 			    		traceCmd="try5";
 			//			SendFrame send = new SendFrame();

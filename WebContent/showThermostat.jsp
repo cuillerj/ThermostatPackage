@@ -44,7 +44,7 @@
 
 <form method=post>
 
-    	 <select name="temperature">
+    	 <select name="temperature" required>
     	 <option value="" selected></option>
     	 <option value="140">14.0°C</option>
     	 <option value="150">15.0°C</option>
@@ -74,13 +74,13 @@
 <td BGCOLOR=#E6E0F8> Hold on heating____</td>
 <td BGCOLOR=#E6E0F8>
 <form method=post>
-    	 <select name="hold">
+    	 <select name="hold" required>
     	  <option value="" selected></option>
     	 <option value="10">10mn</option>
     	 <option value="20">20mn</option>
     	 <option value="30">30mn</option>
     	 <option value="40">40mn</option>
-    	 <option value="60" >60mn</option>
+    	 <option value="60">60mn</option>
     	 <option value="90">90mn</option>
     	 <option value="120">120mn</option>
          <option value="180">180mn</option>
@@ -99,7 +99,7 @@
 <td BGCOLOR=#F6E3CE> Change mode_</td>
 <td BGCOLOR=#F6E3CE>
 <form method=post>
-    	 <select name="mode">
+    	 <select name="mode" required>
     	 <option value="" selected></option>
     	 <option value="0"><%= request.getAttribute("mode0")%></option>
     	 <option value="1" ><%= request.getAttribute("mode1")%></option>
