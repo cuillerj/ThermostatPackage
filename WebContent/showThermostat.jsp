@@ -17,33 +17,28 @@
 <tr>
 <td align="center" BGCOLOR=#81DAF5>Current instruction</td>
 <td align="center" BGCOLOR=#81DAF5><a align="center" href="/domotique/tempGraph.html" target="_blank">Inside temperature</a></td>
-<td align="center" BGCOLOR=#81DAF5><a align="center" href="/domotique/meteoGraph.html" target="_blank">Outside temperature</a></td>
-  
-</tr>
+<td align="center" BGCOLOR=#81DAF5><a align="center" href="/domotique/meteoGraph.html" target="_blank">Outside temperature</a></td></tr>
 <tr>
 <td align="center" BGCOLOR=#81DAF5><%= request.getAttribute("currentInstruction")%>°C</td>
 <td align="center" BGCOLOR=#81DAF5><%= request.getAttribute("currentTemp")%>°C</td> 
 <td align="center" BGCOLOR=#81DAF5><%= request.getAttribute("externalTemp")%>°C</td>   
 </tr>
 <tr>
-<td align="center" BGCOLOR=#E0ECF8>Heating </td>
+<td align="center" BGCOLOR=#E0ECF8>Heating</td>
 <td align="center" BGCOLOR=#E0ECF8>Water temperature</td>
 <td align="center" BGCOLOR=#E0ECF8>Running mode</td>
 </tr>
 <tr>
 <td align="center" BGCOLOR=#E6E6E6><%= request.getAttribute("relay")%></td>
-<td align="center" BGCOLOR=#E6E6E6><%= request.getAttribute("waterOut")%>°C/<%= request.getAttribute("waterIn")%>°C</td>   
+<td align="center" BGCOLOR=#E6E6E6><%= request.getAttribute("waterOut")%>(<%= request.getAttribute("waterMax")%>)°C/<%= request.getAttribute("waterIn")%>°C</td>   
 <td align="center" BGCOLOR=#E6E6E6><%= request.getAttribute("mode")%></td> 
 </tr>
 </table>
-
 <table align="center"  border=1 cellpadding=3 cellspacing=1>
-<tr >
+<tr>
 <td BGCOLOR=#CECEF6> Change instruction____</td>
 <td BGCOLOR=#CECEF6>
-
 <form method=post>
-
     	 <select name="temperature" required>
     	 <option value="" selected></option>
     	 <option value="140">14.0°C</option>
@@ -64,13 +59,12 @@
 		</select>
 		<input type="hidden" name="return" value="tempOverview"/>
      	<input type="submit" value="Selection" title="choisir la temperature" />
-
 </form>
 </td>
 </tr>
 </table>
 <table align="center"  border=1 cellpadding=3 cellspacing=1>
-<tr >
+<tr>
 <td BGCOLOR=#E6E0F8> Hold on heating____</td>
 <td BGCOLOR=#E6E0F8>
 <form method=post>
@@ -85,17 +79,15 @@
     	 <option value="120">120mn</option>
          <option value="180">180mn</option>
          <option value="240">3h</option>
-    
 		</select>
 		<input type="hidden" name="return" value="tempOverview"/>
      	<input type="submit" value="Selection" title="choisir la duree" />
-
 </form>
 </td>
 </tr>
 </table>
 <table align="center"  border=1 cellpadding=3 cellspacing=1>
-<tr >
+<tr>
 <td BGCOLOR=#F6E3CE> Change mode_</td>
 <td BGCOLOR=#F6E3CE>
 <form method=post>
@@ -109,24 +101,21 @@
 		</select>
 		<input type="hidden" name="return" value="tempOverview"/>
      	<input type="submit" value="Selection" title="choisir la duree" />
-
 </form>
 </td>
 </tr>
 </table>
 <table align="center"  border=1 cellpadding=3 cellspacing=1>
-<tr >
+<tr>
 <td BGCOLOR=#F2F2F2> Status___</td>
 <td align="center" <% if(request.getAttribute("error").equals("0")) { %>bgcolor="#9FF781"<% }%> <% if(request.getAttribute("error").equals("1")) { %>bgcolor="#F5BCA9"<% }%>>   
 <%= request.getAttribute("time")%> <%= request.getAttribute("status")%>
 </td>
-<td>
+<td BGCOLOR=#F2F2F2>
 <a href="/Thermostat/ShowParameters" target="_blank"><img src="outils.jpg" border="0" alt="configuration"></a> </td>
+</tr>
+</table>
 </td></tr>
 </table>
-
-</td></tr>
-</table>
-
 </body>
 </html>

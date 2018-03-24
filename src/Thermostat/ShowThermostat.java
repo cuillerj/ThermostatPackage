@@ -28,6 +28,7 @@ public class ShowThermostat extends HttpServlet {
 	public static int waterInIndId=6;
 	public static int securityOnIndId=20;
 	public static int diagIndId=3;
+	public static int waterMaxIndId=49;
 	public static int modeOff=0;               // system off
 	public static int modeWeek=1;              // 7 days x 24h scheduling 
 	public static int modeDay1=2;              // 24h first scheduling 
@@ -62,6 +63,9 @@ public class ShowThermostat extends HttpServlet {
 		String setTemperature="";
 		String setMode="";
 		String setHold="";
+		int boilerId=1282;
+		int outShift=0;	
+		int inShift=0;	
 		try {
 			stationId =   request.getParameter("stationId");
 		      if (stationId == null){  // 
@@ -176,6 +180,12 @@ public class ShowThermostat extends HttpServlet {
 				trace="query diagIndId";
 				} 
 			rs.close();
+			rs = stmt.executeQuery("SELECT * FROM IndValue  where st_id = "+stationId+" and ind_id = "+waterMaxIndId+" order by ind_time DESC limit 1");
+			while (rs.next()) {
+				request.setAttribute("waterMax",rs.getInt("ind_value"));	
+				trace="query waterMaxIndId";
+				} 
+			rs.close();		
 		    if (setMode == null && setHold == null){ 
 				rs = stmt.executeQuery("SELECT * FROM IndValue  where st_id = "+stationId+" and ind_id = "+modeIndId+" order by ind_time DESC limit 1");
 				while (rs.next()) {
@@ -199,15 +209,27 @@ public class ShowThermostat extends HttpServlet {
 		    else{
 				request.setAttribute("mode","----");
 		    }
+			rs = stmt.executeQuery("SELECT ind_target FROM IndDesc"
+					+ " WHERE st_id="+boilerId+" and ind_desc = 'OutShiftTemp'  limit 1"); // 
+			while (rs.next()) {
+				outShift= rs.getInt("ind_target");
+			}
+			rs.close();
+			rs = stmt.executeQuery("SELECT ind_target FROM IndDesc "
+					+ "WHERE  st_id="+boilerId+" and ind_desc = 'InShiftTemp' limit 1"); // 
+			while (rs.next()) {
+				inShift= rs.getInt("ind_target");
+			}
+			rs.close();
 			rs = stmt.executeQuery("SELECT * FROM value_mesurment  where mesurment_st_id = "+water+" and mesurment_ind_id = "+waterInIndId+" order by mesurment_time DESC limit 1");
 			while (rs.next()) {
-				request.setAttribute("waterIn", rs.getInt("mesrument_value")); 
+				request.setAttribute("waterIn", rs.getInt("mesrument_value")+inShift); 
 				trace="query waterIn";
 			}
 			rs.close();	
 			rs = stmt.executeQuery("SELECT * FROM value_mesurment  where mesurment_st_id = "+water+" and mesurment_ind_id = "+waterOutIndId+" order by mesurment_time DESC limit 1");
 			while (rs.next()) {
-				request.setAttribute("waterOut", rs.getInt("mesrument_value")); 
+				request.setAttribute("waterOut", rs.getInt("mesrument_value")+outShift); 
 				trace="query waterOut";
 			}
 			rs.close();			
@@ -220,7 +242,7 @@ public class ShowThermostat extends HttpServlet {
 	//		stmt = conn.createStatement();
 			trace="query meteo";
 			while (rs.next()) {
-				request.setAttribute("externalTemp", rs.getInt("temp"));
+				request.setAttribute("externalTemp", rs.getInt("tempS"));
 				}
 			rs.close();			
 			conn.close();
@@ -268,6 +290,9 @@ public class ShowThermostat extends HttpServlet {
 		String trace="";
 		String status=" ";
 		String setTemperature="";
+		int boilerId=1282;
+		int outShift=0;	
+		int inShift=0;	
 		try {
 			stationId =   request.getParameter("stationId");
 		      if (stationId == null){  // 
@@ -334,6 +359,18 @@ public class ShowThermostat extends HttpServlet {
 				trace="query securityOnIndId";
 				} 
 			rs.close();
+			rs = stmt.executeQuery("SELECT ind_target FROM IndDesc"
+					+ " WHERE st_id="+boilerId+" and ind_desc = 'OutShiftTemp'  limit 1"); // 
+			while (rs.next()) {
+				outShift= rs.getInt("ind_target");
+			}
+			rs.close();
+			rs = stmt.executeQuery("SELECT ind_target FROM IndDesc "
+					+ "WHERE  st_id="+boilerId+" and ind_desc = 'InShiftTemp' limit 1"); // 
+			while (rs.next()) {
+				inShift= rs.getInt("ind_target");
+			}
+			rs.close();
 			rs = stmt.executeQuery("SELECT * FROM IndValue  where st_id = "+stationId+" and ind_id = "+diagIndId+" order by ind_time DESC limit 1");
 			while (rs.next()) {
 				if(rs.getInt("ind_value")!=0)
@@ -344,7 +381,12 @@ public class ShowThermostat extends HttpServlet {
 				trace="query diagIndId";
 				} 
 			rs.close();
-			
+			rs = stmt.executeQuery("SELECT * FROM IndValue  where st_id = "+stationId+" and ind_id = "+waterMaxIndId+" order by ind_time DESC limit 1");
+			while (rs.next()) {
+				request.setAttribute("waterMax",rs.getInt("ind_value"));	
+				trace="query waterMaxIndId";
+				} 
+			rs.close();			
 			rs = stmt.executeQuery("SELECT * FROM IndValue  where st_id = "+stationId+" and ind_id = "+modeIndId+" order by ind_time DESC limit 1");
 			while (rs.next()) {
 				int mode=rs.getInt("ind_value");
@@ -364,15 +406,27 @@ public class ShowThermostat extends HttpServlet {
 				trace="query currentInstruction";
 				} 
 			rs.close();
+			rs = stmt.executeQuery("SELECT ind_target FROM IndDesc"
+					+ " WHERE st_id="+boilerId+" and ind_desc = 'OutShiftTemp'  limit 1"); // 
+			while (rs.next()) {
+				outShift= rs.getInt("ind_target");
+			}
+			rs.close();
+			rs = stmt.executeQuery("SELECT ind_target FROM IndDesc "
+					+ "WHERE  st_id="+boilerId+" and ind_desc = 'InShiftTemp' limit 1"); // 
+			while (rs.next()) {
+				inShift= rs.getInt("ind_target");
+			}
+			rs.close();
 			rs = stmt.executeQuery("SELECT * FROM value_mesurment  where mesurment_st_id = "+water+" and mesurment_ind_id = "+waterInIndId+" order by mesurment_time DESC limit 1");
 			while (rs.next()) {
-				request.setAttribute("waterIn", rs.getInt("mesrument_value")); 
+				request.setAttribute("waterIn", rs.getInt("mesrument_value")+inShift); 
 				trace="query waterIn";
 			}
 			rs.close();
 			rs = stmt.executeQuery("SELECT * FROM value_mesurment  where mesurment_st_id = "+water+" and mesurment_ind_id = "+waterOutIndId+" order by mesurment_time DESC limit 1");
 			while (rs.next()) {
-				request.setAttribute("waterOut", rs.getInt("mesrument_value")); 
+				request.setAttribute("waterOut", rs.getInt("mesrument_value")+outShift); 
 				trace="query waterOut";
 			}
 			conn.close();
@@ -384,7 +438,7 @@ public class ShowThermostat extends HttpServlet {
 	//		stmt = conn.createStatement();
 			trace="query meteo";
 			while (rs.next()) {
-				request.setAttribute("externalTemp", rs.getInt("temp"));
+				request.setAttribute("externalTemp", rs.getInt("tempS"));
 				}
 			rs.close();			
 			conn.close();
