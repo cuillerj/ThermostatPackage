@@ -76,9 +76,9 @@
     	 <option value="40">40mn</option>
     	 <option value="60">60mn</option>
     	 <option value="90">90mn</option>
-    	 <option value="120">120mn</option>
-         <option value="180">180mn</option>
-         <option value="240">3h</option>
+    	 <option value="120">2h</option>
+         <option value="180">3h</option>
+         <option value="240">4h</option>
 		</select>
 		<input type="hidden" name="return" value="tempOverview"/>
      	<input type="submit" value="Selection" title="choisir la duree" />
