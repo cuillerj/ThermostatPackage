@@ -1,4 +1,4 @@
-package Thermostat;
+package DoorSystem;
 
 
 
@@ -75,22 +75,12 @@ public class SendCommands extends HttpServlet {
 		
 		final byte commandNumber=13;
 
-		final int[] paramNumber={1,1,1,2,2,2,1,1,0,0,0,1,1};  
-		final int[] paramLen={1,1,1,2,2,2,1,1,0,0,0,1,1};
+		final int[] paramNumber={1,0};  
+		final int[] paramLen={10};
 		final String[] commandS = new String[commandNumber];
 		commandS[0]="setMode";
-		commandS[1]="setTemp";
-		commandS[2]="setSecurity";
-		commandS[3]="updateTemperature";
-		commandS[4]="updateRegister";
-		commandS[5]="updateSchedul";
-		commandS[6]="writeEeprom";
-		commandS[7]="temporarilyHold";
-		commandS[8]="uploadSchedule";
-		commandS[9]="uploadTemperatures";
-		commandS[10]="uploadRegisters";
-		commandS[11]="tracePID";
-		commandS[12]="setInstruction";
+		commandS[1]="open";
+
 		String ipAddress = request.getHeader("X-FORWARDED-FOR");  
 		   if (ipAddress == null) {  
 			   ipAddress = request.getRemoteAddr();  
@@ -113,7 +103,7 @@ public class SendCommands extends HttpServlet {
 			try {
 				stationId =   request.getParameter("station");
 			     if (stationId == null){  // 
-			    	 stationId="1280";
+			    	 stationId="1026";
 			     }
 				request.setAttribute("stationId",stationId);
 			}

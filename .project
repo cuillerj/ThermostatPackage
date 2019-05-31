@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>ThermostatPackage</name>
+	<name>DoorSystemPackage</name>
 	<comment></comment>
 	<projects>
 		<project>MysqlTools</project>

@@ -4,9 +4,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Door System Menu</title>
+<title>Open the door</title>
 </head>
 <body>
-
+			<tr>
+			<td align="center" BGCOLOR=#CEECF5>open the door</td>
+			<td><form method="get" action="SendCommands">
+				<input type="hidden" name="command" value="openTheDoor">
+				<input type="submit" value="update">
+			</form></td>
+		</tr>
 </body>
 </html>

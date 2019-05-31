@@ -1,53 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:web="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
-  
   <servlet>
-    <servlet-name>ShowThermostat</servlet-name>
-    <servlet-class>Thermostat.ShowThermostat</servlet-class>
+    <servlet-name>OpenDoor</servlet-name>
+    <servlet-class>DoorSystem.OpenDoor</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>ShowThermostat</servlet-name>
-    <url-pattern>/ShowThermostat</url-pattern>
-  </servlet-mapping>
-   <servlet>
-    <servlet-name>ShowParameters</servlet-name>
-    <servlet-class>Thermostat.ShowParameters</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ShowParameters</servlet-name>
-    <url-pattern>/ShowParameters</url-pattern>
-  </servlet-mapping>
-     <servlet>
-    <servlet-name>ModifyParameters</servlet-name>
-    <servlet-class>Thermostat.ModifyParameters</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ModifyParameters</servlet-name>
-    <url-pattern>/ModifyParameters</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>UpdateParameters</servlet-name>
-    <servlet-class>Thermostat.UpdateParameters</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>UpdateParameters</servlet-name>
-    <url-pattern>/UpdateParameters</url-pattern>
-  </servlet-mapping>
-    <servlet>
-    <servlet-name>SendCommands</servlet-name>
-    <servlet-class>Thermostat.SendCommands</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>SendCommands</servlet-name>
-    <url-pattern>/SendCommands</url-pattern>
-  </servlet-mapping>
-      <servlet>
-    <servlet-name>consigneChauffModif</servlet-name>
-    <servlet-class>Thermostat.consigneChauffModif</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>consigneChauffModif</servlet-name>
-    <url-pattern>/consigneChauffModif</url-pattern>
+    <servlet-name>OpenDoor</servlet-name>
+    <url-pattern>/OpenTheDoor</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>

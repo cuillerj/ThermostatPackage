@@ -1,4 +1,4 @@
-package Thermostat;
+package DoorSystem;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.Date;
@@ -11,9 +11,6 @@ public class ValidUser  {
 
 
 public int CheckIP (String ipAddress) {
-
-		// TODO Auto-generated constructor stub
-	
 
 	Connection conn = null;
 	Statement stmt = null;
