@@ -8,6 +8,22 @@
     <servlet-name>OpenDoor</servlet-name>
     <url-pattern>/OpenTheDoor</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>DoorActions</servlet-name>
+    <servlet-class>DoorSystem.DoorActions</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DoorActions</servlet-name>
+    <url-pattern>/RequestStatus</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>ShowStatus</servlet-name>
+    <servlet-class>DoorSystem.ShowDoorStatus</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ShowStatus</servlet-name>
+    <url-pattern>/ShowStatus</url-pattern>
+  </servlet-mapping>
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>

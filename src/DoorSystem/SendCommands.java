@@ -73,13 +73,14 @@ public class SendCommands extends HttpServlet {
 	commandS[11]="tracePID";
 		 */
 		
-		final byte commandNumber=13;
+		final byte commandNumber=3;
 
-		final int[] paramNumber={1,0};  
-		final int[] paramLen={10};
+		final int[] paramNumber={0,0,0};  
+		final int[] paramLen={0,0,0};
 		final String[] commandS = new String[commandNumber];
-		commandS[0]="setMode";
-		commandS[1]="open";
+		commandS[0]="status";
+		commandS[1]="ring";
+		commandS[2]="open";
 
 		String ipAddress = request.getHeader("X-FORWARDED-FOR");  
 		   if (ipAddress == null) {  
@@ -101,9 +102,9 @@ public class SendCommands extends HttpServlet {
 			String trace="";
 			String status=" ";
 			try {
-				stationId =   request.getParameter("station");
+				stationId =   request.getParameter("door");
 			     if (stationId == null){  // 
-			    	 stationId="1026";
+			    	 stationId="1283";
 			     }
 				request.setAttribute("stationId",stationId);
 			}

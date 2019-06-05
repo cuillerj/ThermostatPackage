@@ -1,7 +1,6 @@
 package DoorSystem;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,14 +10,14 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class OpenDoor
  */
-@WebServlet("/OpenDoor")
-public class OpenDoor extends HttpServlet {
+@WebServlet("/Home")
+public class DoorActions extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public OpenDoor() {
+    public DoorActions() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,6 +27,7 @@ public class OpenDoor extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		String door=request.getParameter("door");
 		String ipAddress = request.getHeader("X-FORWARDED-FOR");  
 		   if (ipAddress == null) {  
 			   ipAddress = request.getRemoteAddr();  
@@ -39,17 +39,15 @@ public class OpenDoor extends HttpServlet {
 		{
 		
 		}
-		
 */
-			String door=request.getParameter("door");
 			try {
-				SendFrame.SendCommand(door,"open","","");
+				SendFrame.SendCommand(door,"statusRequest","","");
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		   
-		request.getRequestDispatcher("/index.jsp").forward(request,response);
+		request.getRequestDispatcher("/status.jsp").forward(request,response);
 		
 	
 	}

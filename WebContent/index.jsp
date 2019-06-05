@@ -11,7 +11,9 @@
 
 <table border=1 cellpadding=3 cellspacing=1>
 <tr>
-<td align="center" BGCOLOR=#81DAF5><a href="http://jserver:8080/DoorSystem/OpenTheDoor"><img src="PoigneePorte.JPG" width="82" height="86" title="Open the door"></a></td>
+<td align="center" BGCOLOR=#81DAF5><a href="http://jserver:8080/DoorSystem/OpenTheDoor?door=1283"><img src="PoigneePorte.JPG" width="82" height="86" title="Open the door"></a></td>
+
+<td align="center" BGCOLOR=#81DAF5><a href="http://jserver:8080/DoorSystem/ShowDoorStatus?door=1283"><img src="outils.jpg" width="82" height="86" title="Show status"></a></td>
 </tr>
 </table>
 </body>
