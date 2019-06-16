@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.servlet.http.Cookie;
 public class ValidUser  {
 
 
@@ -60,9 +61,7 @@ public int CheckIP (String ipAddress) {
 
 			valid=rs1.getInt("userID");;
 
-//			senderArray[i] = rs1.getString("sender");
-//			identifierArray[i]= rs1.getString("identifier");
-//			i=i+1;
+
 		}
 		
 		trace="close:"+validity;
@@ -82,5 +81,66 @@ public int CheckIP (String ipAddress) {
 	}
 	return valid;
 }
+public static boolean CheckRight (String Uname, String cookie) {
+
+	// TODO Auto-generated constructor stub
+
+
+Connection conn = null;
+Statement stmt = null;
+ResultSet rs1 = null;
+Statement stmt2 = null;
+ResultSet rs2 = null;
+String RC="init";
+String trace="";
+String nomIn="";
+String pswIn="";
+String sql="";
+String cookieToCheck="";
+int ipLength=0;
+boolean valid=false;
+int key1=-1;
+int startIdx=0;
+try {
+	trace="init";
+	Class.forName("com.mysql.jdbc.Driver").newInstance();
+	String connectionUrl = GetSqlConnection.GetDomotiqueDB();
+	String connectionUser = GetSqlConnection.GetUser();
+	String connectionPassword = GetSqlConnection.GetPass();
+	conn = DriverManager.getConnection(connectionUrl, connectionUser, connectionPassword);
+	trace="conn";
+
+	sql="SELECT * FROM users where uname= ?  limit 1";
+	 PreparedStatement preparedStatement0 = conn.prepareStatement(sql);
+	 preparedStatement0.setString(1, Uname); // 
+	rs1 = preparedStatement0.executeQuery();
+	trace="query users";
+	while (rs1.next()) {
+		trace="lect";
+//		valid=cookie+" lect ";
+		cookieToCheck=rs1.getString("Upsw");
+	}		
+	trace="close:"+cookieToCheck;
+	preparedStatement0.close();
+//	valid=valid+cookieToCheck;
+	if (cookieToCheck.equals(cookie))
+	{
+		valid=true;
+	}
+	
+
+} catch (Exception e) {
+	e.printStackTrace();
+	RC="ko"+e;
+	trace="catch:";
+} finally {
+	try { if (rs1 != null) rs1.close(); } catch (SQLException e) { e.printStackTrace(); }
+
+	try { if (stmt != null) stmt.close(); } catch (SQLException e) { e.printStackTrace(); }
+	try { if (conn != null) conn.close(); } catch (SQLException e) { e.printStackTrace(); }
 }
+return valid;
+}
+}
+
 
